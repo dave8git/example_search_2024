@@ -9,18 +9,20 @@ function FileSearch() {
     const [searchTag, setSearchTag] = useState(''); 
 
     const xmlDoc = new window.DOMParser().parseFromString(fileContent, 'application/xml');
-    //console.log('xmlDoc', xmlDoc);
+    console.log('xmlDoc', xmlDoc);
 
     const searchXML = () => {
         console.log(searchTag);
         const elements = xmlDoc.getElementsByTagName(searchTag);
-        
-        if (elements.length === 0) {
-            setFoundElements([...elements]);
+        console.log('elements', elements.length);
+
+        if (elements.length !== 0) {
+            const elementsArray = [...elements].map(element => element.outerHTML); // outerHTML bierze tagi i tekst w środku
+            setFoundElements(elementsArray);
         }
     
     }
-
+    console.log('foundElements', foundElements);
     const handleInputChange = (event) => {
         setSearchTag(event.target.value);
     }
