@@ -7,9 +7,9 @@ function CostTable() {
     // const [costs, setCosts] = useState([]);
 
     const xmlDoc = new window.DOMParser().parseFromString(fileContent, 'application/xml');
-
+    console.log('xmlDoc', xmlDoc);
     const costs = xmlDoc.querySelectorAll('PKPIRWiersz[typ="G"]');
-    
+    // ZADANIE: Wyświetl błąd jeżeli długość jest zerowa (plik jest nie odpowiedni, lub niezgodny ze standardem jpk)
     console.log('costs', costs);
     return (
         <>

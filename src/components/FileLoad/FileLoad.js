@@ -10,12 +10,12 @@ function FileLoad() {
         event.preventDefault();
         const file = event.target.plik.files[0];
         setError(false);
-        console.log(event);
         if (file) {
             const reader = new FileReader();
-            console.log(file);
+            console.log('file', file);
             // // Define what happens when the file is read
             reader.onload = function (event) {
+                console.log('file event', event);
                 setFileContent(event.target.result); // Update the context with the file content
             };
 
