@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { FileContext } from "../FileProvider/FileProvider";
-
+import { useEffect } from "react";
 function FileLoad() {
     const [error, setError] = useState(false);
     //const [fileContent, setFileContent] = useState("");
@@ -27,10 +27,25 @@ function FileLoad() {
         }
     }
 
+    useEffect(() => {
+        if(error) {
+            setTimeout(() => {
+                setError(false);
+            }, 5000);
+        }
+    }, [error])
+
+    const handleChange = (e) => {
+        if(e.target.value && error) {
+            setError(false);
+        }
+        console.log(e.target.value);
+    }
+
     return (
         <>
             <form onSubmit={loadFile}>
-                <input type="file" name="plik"></input>
+                <input type="file" name="plik" onChange={handleChange}></input>
                 {error && <div>{error}</div>}
                 <button type="submit">Wczytaj plik</button>
             </form>
